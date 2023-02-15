@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 --Readme document for Hyeon Woo Seo & Orviel Alzate, hyeonws@uci.edu & oalzate@uci.edu, 64575239 & 57964493--
-=======
---Readme document for *author(s)*, *email(s)*, *UCI id(s)*--
->>>>>>> 0efed455e3f9b4a4e2efc5bc8191850657eb7d9c
 
 1. How many assignment points do you believe you completed (replace the *'s with your numbers)?
 
