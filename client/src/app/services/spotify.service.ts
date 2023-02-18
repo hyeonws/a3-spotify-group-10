@@ -34,7 +34,6 @@ export class SpotifyService {
   aboutMe():Promise<ProfileData> {
     //This line is sending a request to express, which returns a promise with some data. We're then parsing the data 
     return this.sendRequestToExpress('/me').then((data) => {
-      console.log(data);
       return new ProfileData(data);
     });
   }
@@ -44,7 +43,36 @@ export class SpotifyService {
     //Make sure you're encoding the resource with encodeURIComponent().
     //Depending on the category (artist, track, album), return an array of that type of data.
     //JavaScript's "map" function might be useful for this, but there are other ways of building the array.
-    return null as any;
+    return this.sendRequestToExpress('/search/' + category + '/' + encodeURIComponent(resource)).then((response) => {
+      // console.log(response[category+"s"]["items"].forEach(element => {
+      //   if (category == 'artist') {
+      //     console.log(new ArtistData(element));
+      //   } else if (category == 'album') {
+      //     console.log(new AlbumData(element));
+      //   } else if (category == 'track') {
+      //     console.log(new TrackData(element));
+      //   } else {
+      //     console.log("Unknown category");
+      //   }
+      // }));
+      return this.searchForHelper(category, response);
+    }, (err) => {
+      console.log("ERROR: Did not receive a valid response");
+      return null;
+    });
+  }
+
+  searchForHelper(category:string, response:object):ResourceData[] {
+    if (category == 'artist') {
+      return response[category+"s"]["items"].map(data => new ArtistData(data));
+    } else if (category == 'album') {
+      return response[category+"s"]["items"].map(data => new AlbumData(data));
+    } else if (category == 'track') {
+      return response[category+"s"]["items"].map(data => new TrackData(data));
+    } else {
+      console.log("ERROR: Unknown category");
+      return null as any;
+    }
   }
 
   getArtist(artistId:string):Promise<ArtistData> {
