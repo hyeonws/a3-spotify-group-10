@@ -5,19 +5,19 @@
 			<th scope="col">Track</th>
 			<th scope="col">Duration</th>
 			<!--TODO: Use *ngIf to hide if hideArtist is true-->
-			<th scope="col">Primary Artist</th>
+			<th *ngIf="hideArtist" scope="col">Primary Artist</th>
 			<!--TODO: Use *ngIf to hide if hideAlbum is true-->
-			<th scope="col">Album</th>
+			<th *ngIf="hideAlbum" scope="col">Album</th>
 		</tr>
 	</thead>
 	<tbody>
 		<!--TODO: Use *ngFor to loop over tracks-->
-		<tr>
+		<tr *ngFor="let track of tracks">
 			<!--TODO: Populate with row index (start with 1!)-->
-			<td>???</td>
+			<td></td>
 			<td>
 				<!--TODO: link to the endpoint for that track, display the track's name-->
-				<a>???</a>
+				<a>{{track["name"]}}</a>
 			</td>
 			<!--TODO: display the track's duration-->
 			<td>???</td>
