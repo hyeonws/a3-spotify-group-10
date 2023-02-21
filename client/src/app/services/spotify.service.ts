@@ -52,6 +52,10 @@ export class SpotifyService {
   }
 
   searchForHelper(category:string, response:object):ResourceData[] {
+    if (response[category+"s"] == undefined) {
+      console.log("WARNING: Response is undefined");
+      return null as any;
+    }
     if (category == 'artist') {
       return response[category+"s"]["items"].map(data => new ArtistData(data));
     } else if (category == 'album') {
