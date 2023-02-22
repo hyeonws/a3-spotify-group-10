@@ -71,32 +71,114 @@ export class SpotifyService {
   getArtist(artistId:string):Promise<ArtistData> {
     //TODO: use the artist endpoint to make a request to express.
     //Again, you may need to encode the artistId.
-    return null as any;
+    return this.sendRequestToExpress('/artist/' + encodeURIComponent(artistId) + '/').then((response) => {
+      return new ArtistData(response);
+      // return this.getArtist(response);
+    }, (err) => {
+      console.log("ERROR: Did not receive a valid response");
+      return null;
+    });
   }
 
   getRelatedArtists(artistId:string):Promise<ArtistData[]> {
     //TODO: use the related artist endpoint to make a request to express and return an array of artist data.
-   return null as any;
+    return this.sendRequestToExpress('/artist-related-artists/' + artistId).then((response) => {
+      if (response == undefined) {
+        console.log("WARNING: Response is undefined");
+        return null as any;
+      }
+      else {
+        let artistsArray:ArtistData[];
+        artistsArray = response['artists'].map((data) => {
+          return new ArtistData(data);
+          // return this.getRelatedArtists(data);
+        });
+        if(artistsArray == undefined) {
+          console.log("WARNING: Response is undefined");
+          return null as any;
+      }
+        return artistsArray;
+        }
+      });
   }
 
   getTopTracksForArtist(artistId:string):Promise<TrackData[]> {
     //TODO: use the top tracks endpoint to make a request to express.
-    return null as any;
+    return this.sendRequestToExpress('/artist-top-tracks/' + artistId).then((response) => {
+      if (response == undefined) {
+        console.log("WARNING: Response is undefined");
+        return null as any;
+      }
+      else {
+        let trackArray:TrackData[];
+        trackArray = response['tracks'].map((data) => {
+          return new TrackData(data);
+          // return this.getTopTracksForArtist(data);
+        });
+        if(trackArray == undefined) {
+          console.log("WARNING: Response is undefined");
+          return null as any;
+      }
+        return trackArray;
+        }
+      });
+    // return null as any;
   }
 
   getAlbumsForArtist(artistId:string):Promise<AlbumData[]> {
     //TODO: use the albums for an artist endpoint to make a request to express.
-    return null as any;
+    return this.sendRequestToExpress('/artist-albums/' + artistId).then((response) => {
+      if (response == undefined) {
+        console.log("WARNING: Response is undefined");
+        return null as any;
+      }
+      else {
+        let albumArray:AlbumData[];
+        albumArray = response['items'].map((data) => {
+          return new AlbumData(data);
+          // return this.getAlbumsForArtist(data);
+        });
+        if(albumArray == undefined) {
+          console.log("WARNING: Response is undefined");
+          return null as any;
+      }
+        return albumArray;
+        }
+      });
+    // return null as any;
   }
 
   getAlbum(albumId:string):Promise<AlbumData> {
     //TODO: use the album endpoint to make a request to express.
-    return null as any;
+    return this.sendRequestToExpress('/album/' + albumId).then((response) => {
+      return new AlbumData(response);
+    }, (err) => {
+      console.log("ERROR: Did not receive a valid response");
+      return null;
+    });
+    // return null as any;
   }
 
   getTracksForAlbum(albumId:string):Promise<TrackData[]> {
     //TODO: use the tracks for album endpoint to make a request to express.
-    return null as any;
+    return this.sendRequestToExpress('/album-tracks/' + albumId).then((response) => {
+      if (response == undefined) {
+        console.log("WARNING: Response is undefined");
+        return null as any;
+      }
+      else {
+        let trackArray:TrackData[];
+        trackArray = response['items'].map((data) => {
+          return new TrackData(data);
+        });
+        if(trackArray == undefined) {
+          console.log("WARNING: Response is undefined");
+          return null as any;
+      }
+        return trackArray;
+        }
+      });
+    // return null as any;
   }
 
   getTrack(trackId:string):Promise<TrackData> {

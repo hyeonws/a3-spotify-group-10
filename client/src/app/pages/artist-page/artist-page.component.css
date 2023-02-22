@@ -6,3 +6,20 @@
 app-artist {
 	vertical-align: middle;
 }
+
+.col-6 {
+	background-color: rgb(8,8,8);
+}
+
+.col-2 {
+	background-color: rgb(8,8,8);
+}
+
+.col-4 {
+	background-color: rgb(8,8,8);
+}
+
+.heading {
+	color: rgb(255, 255, 255);
+
+}
