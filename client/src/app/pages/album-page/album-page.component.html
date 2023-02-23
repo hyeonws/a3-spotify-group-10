@@ -1,12 +1,12 @@
 <div *ngIf="album" class="row">
 	<div class="col-6">
 		<!--TODO: populate with album name-->
-		<h1>{{album.name}}</h1>
+		<h1 class="heading">{{album.name}}</h1>
 		<!--TODO: set src to album image URL-->
 		<img id="albumImg" [src] = "album.imageURL">
 		<!--TODO: loop over album artists-->
 		<span *ngFor="let artist of artistsArray">
-			<p>
+			<p class="heading">
 				<!--TODO: link to artist page, display artist name-->
 				Artist: <a>{{artist.name}}</a>
 			</p>
@@ -17,7 +17,7 @@
 		</span>
 	</div>
 	<div class="col-6">
-		<h3>Album Tracks</h3>
+		<h3 class="heading">Album Tracks</h3>
 		<!--TODO: display the track list for the album. Hide the artist and album columns because they are redundant on this page.-->
 		<app-track-list [tracks] = "tracks" [hideArtist] = "false" [hideAlbum] = "false"></app-track-list>
 	</div>
