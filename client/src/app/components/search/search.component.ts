@@ -30,7 +30,6 @@ export class SearchComponent implements OnInit {
       console.log("WARNING: searchString is undefined");
     } else {
       this.spotifyService.searchFor(this.searchCategory, this.searchString).then(data => this.resources = data);
-      console.log(this.resources);
     }
   }
 

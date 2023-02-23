@@ -17,7 +17,7 @@
 			<td>{{tracks.indexOf(track)+1}}</td>
 			<td>
 				<!--TODO: link to the endpoint for that track, display the track's name-->
-				<a [href]="track.url">{{track["name"]}}</a>
+				<a href="{{track.category}}/{{track.id}}">{{track["name"]}}</a>
 			</td>
 			<!--TODO: display the track's duration-->
 			<td>{{track.durationStr}}</td>
