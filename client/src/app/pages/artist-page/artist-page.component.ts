@@ -42,7 +42,6 @@ export class ArtistPageComponent implements OnInit {
     this.spotifyService.getAlbumsForArtist(this.artistId).then((data) => {
       this.albums = data;
     });
-    console.log(this.topTracks);
 
   }
 
