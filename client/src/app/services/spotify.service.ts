@@ -178,16 +178,43 @@ export class SpotifyService {
         return trackArray;
         }
       });
-    // return null as any;
   }
 
   getTrack(trackId:string):Promise<TrackData> {
     //TODO: use the track endpoint to make a request to express.
-    return null as any;
+    return this.sendRequestToExpress('/track/' + trackId).then((response) => {
+      return new TrackData(response);
+    }, (err) => {
+      console.log("ERROR: Did not receive a valid response");
+      return null;
+    });
   }
 
   getAudioFeaturesForTrack(trackId:string):Promise<TrackFeature[]> {
     //TODO: use the audio features for track endpoint to make a request to express.
-    return null as any;
+    return this.sendRequestToExpress('/track-audio-features/' + trackId).then((response) => {
+      if (response == undefined) {
+        console.log("WARNING: Response is undefined");
+        return null as any;
+      }
+      else {
+        let trackFeatureArray:TrackFeature[]=[];
+        // 'danceability', 'energy', 'speechiness', 'acousticness',
+        //  'instrumentalness', 'liveness', 'valence'
+        trackFeatureArray.push(new TrackFeature('danceability', response['danceability']));
+        trackFeatureArray.push(new TrackFeature('energy', response['energy']));
+        trackFeatureArray.push(new TrackFeature('speechiness', response['speechiness']));
+        trackFeatureArray.push(new TrackFeature('acousticness', response['acousticness']));
+        trackFeatureArray.push(new TrackFeature('instrumentalness', response['instrumentalness']));
+        trackFeatureArray.push(new TrackFeature('liveness', response['liveness']));
+        trackFeatureArray.push(new TrackFeature('valence', response['valence']));
+
+        if(trackFeatureArray == undefined) {
+          console.log("WARNING: Response is undefined");
+          return null as any;
+      }
+        return trackFeatureArray;
+        }
+      });
   }
 }
