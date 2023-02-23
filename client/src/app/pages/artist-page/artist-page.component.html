@@ -1,41 +1,41 @@
 <div *ngIf="artist" class="row">
 	<div class="col-6">
-		<!--TODO: populate with artist name-->
+		<!--populate with artist name-->
 		<h1 class="heading">{{artist.name}}</h1>
-		<!--TODO: populate with artist image URL-->
+		<!--populate with artist image URL-->
 		<img id="artistImg" [src]="artistImg">
 		<p>
-			<!--TODO: link to artist page on spotify, display artist name-->
+			<!--link to artist page on spotify, display artist name-->
 			<a class="btn btn-light" role="button" target="_blank" [href] = "artist.url">Open {{artist.name}} on Spotify</a>
 		</p>
 	</div>
 	<div class="col-2">
 		<h3 class="heading">Genres</h3>
 		<ul>
-			<!--TODO: loop over artist's genres and display them-->
+			<!--loop over artist's genres and display them-->
 			<li *ngFor = "let genre of genreArray" class="heading">{{genre}}</li>
 		</ul>
 		<p>
 		</p>
 	</div>
 	<div class="col-4">
-		<!--TODO: display artist name-->
+		<!--display artist name-->
 		<h3 class="heading">{{artist.name}}'s Top Tracks</h3>
-		<!--TODO: display the artist's top tracks-->
+		<!--display the artist's top tracks-->
 		<app-track-list [tracks] = "topTracks"></app-track-list>
 	</div>
 </div>
 
 <div *ngIf="artist" class="row">
 	<div class="col-6">
-		<!--TODO: display artist name-->
+		<!--display artist name-->
 		<h3 class="heading">{{artist.name}}'s Albums</h3>
-		<!--TODO: Display a carousel component for the artist's albums. Bind carousel's resources and give it a static carouselId.-->
+		<!--Display a carousel component for the artist's albums. Bind carousel's resources and give it a static carouselId.-->
 		<app-carousel [carouselId] = "albums[0].category" [resources] = "albums"></app-carousel>
 	</div>
 	<div class="col-6">
 		<h3 class="heading">Similar Artists</h3>
-		<!--TODO: Display a carousel component for similar artists. Bind carousel's resources and give it a static carouselId.-->
+		<!--Display a carousel component for similar artists. Bind carousel's resources and give it a static carouselId.-->
 		<app-carousel [carouselId] = "artist.category" [resources] = "relatedArtists"></app-carousel>
 	</div>
 

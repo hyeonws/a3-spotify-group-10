@@ -17,7 +17,7 @@ export class SpotifyService {
   constructor(private http:HttpClient) { }
 
   private sendRequestToExpress(endpoint:string):Promise<any> {
-    //TODO: use the injected http Service to make a get request to the Express endpoint and return the response.
+    //use the injected http Service to make a get request to the Express endpoint and return the response.
     //the http service works similarly to fetch(). It may be useful to call .toPromise() on any responses.
     //update the return to instead return a Promise with the data from the Express server
 
@@ -39,10 +39,7 @@ export class SpotifyService {
   }
 
   searchFor(category:string, resource:string):Promise<ResourceData[]> {
-    //TODO: identify the search endpoint in the express webserver (routes/index.js) and send the request to express.
-    //Make sure you're encoding the resource with encodeURIComponent().
-    //Depending on the category (artist, track, album), return an array of that type of data.
-    //JavaScript's "map" function might be useful for this, but there are other ways of building the array.
+    //identify the search endpoint in the express webserver (routes/index.js) and send the request to express.
     return this.sendRequestToExpress('/search/' + category + '/' + encodeURIComponent(resource)).then((response) => {
       return this.searchForHelper(category, response);
     }, (err) => {
@@ -69,11 +66,9 @@ export class SpotifyService {
   }
 
   getArtist(artistId:string):Promise<ArtistData> {
-    //TODO: use the artist endpoint to make a request to express.
-    //Again, you may need to encode the artistId.
+    //use the artist endpoint to make a request to express.
     return this.sendRequestToExpress('/artist/' + encodeURIComponent(artistId)).then((response) => {
       return new ArtistData(response);
-      // return this.getArtist(response);
     }, (err) => {
       console.log("ERROR: Did not receive a valid response");
       return null;
@@ -81,7 +76,7 @@ export class SpotifyService {
   }
 
   getRelatedArtists(artistId:string):Promise<ArtistData[]> {
-    //TODO: use the related artist endpoint to make a request to express and return an array of artist data.
+    //use the related artist endpoint to make a request to express and return an array of artist data.
     return this.sendRequestToExpress('/artist-related-artists/' + artistId).then((response) => {
       if (response == undefined) {
         console.log("WARNING: Response is undefined");
@@ -91,7 +86,6 @@ export class SpotifyService {
         let artistsArray:ArtistData[];
         artistsArray = response['artists'].map((data) => {
           return new ArtistData(data);
-          // return this.getRelatedArtists(data);
         });
         if(artistsArray == undefined) {
           console.log("WARNING: Response is undefined");
@@ -103,7 +97,7 @@ export class SpotifyService {
   }
 
   getTopTracksForArtist(artistId:string):Promise<TrackData[]> {
-    //TODO: use the top tracks endpoint to make a request to express.
+    //use the top tracks endpoint to make a request to express.
     return this.sendRequestToExpress('/artist-top-tracks/' + artistId).then((response) => {
       if (response == undefined) {
         console.log("WARNING: Response is undefined");
@@ -113,7 +107,6 @@ export class SpotifyService {
         let trackArray:TrackData[];
         trackArray = response['tracks'].map((data) => {
           return new TrackData(data);
-          // return this.getTopTracksForArtist(data);
         });
         if(trackArray == undefined) {
           console.log("WARNING: Response is undefined");
@@ -122,11 +115,11 @@ export class SpotifyService {
         return trackArray;
         }
       });
-    // return null as any;
+    
   }
 
   getAlbumsForArtist(artistId:string):Promise<AlbumData[]> {
-    //TODO: use the albums for an artist endpoint to make a request to express.
+    //use the albums for an artist endpoint to make a request to express.
     return this.sendRequestToExpress('/artist-albums/' + artistId).then((response) => {
       if (response == undefined) {
         console.log("WARNING: Response is undefined");
@@ -136,7 +129,7 @@ export class SpotifyService {
         let albumArray:AlbumData[];
         albumArray = response['items'].map((data) => {
           return new AlbumData(data);
-          // return this.getAlbumsForArtist(data);
+          
         });
         if(albumArray == undefined) {
           console.log("WARNING: Response is undefined");
@@ -145,22 +138,22 @@ export class SpotifyService {
         return albumArray;
         }
       });
-    // return null as any;
+    
   }
 
   getAlbum(albumId:string):Promise<AlbumData> {
-    //TODO: use the album endpoint to make a request to express.
+    //use the album endpoint to make a request to express.
     return this.sendRequestToExpress('/album/' + albumId).then((response) => {
       return new AlbumData(response);
     }, (err) => {
       console.log("ERROR: Did not receive a valid response");
       return null;
     });
-    // return null as any;
+    
   }
 
   getTracksForAlbum(albumId:string):Promise<TrackData[]> {
-    //TODO: use the tracks for album endpoint to make a request to express.
+    //use the tracks for album endpoint to make a request to express.
     return this.sendRequestToExpress('/album-tracks/' + albumId).then((response) => {
       if (response == undefined) {
         console.log("WARNING: Response is undefined");
@@ -181,7 +174,7 @@ export class SpotifyService {
   }
 
   getTrack(trackId:string):Promise<TrackData> {
-    //TODO: use the track endpoint to make a request to express.
+    //use the track endpoint to make a request to express.
     return this.sendRequestToExpress('/track/' + trackId).then((response) => {
       return new TrackData(response);
     }, (err) => {
@@ -191,7 +184,7 @@ export class SpotifyService {
   }
 
   getAudioFeaturesForTrack(trackId:string):Promise<TrackFeature[]> {
-    //TODO: use the audio features for track endpoint to make a request to express.
+    //use the audio features for track endpoint to make a request to express.
     return this.sendRequestToExpress('/track-audio-features/' + trackId).then((response) => {
       if (response == undefined) {
         console.log("WARNING: Response is undefined");
@@ -199,8 +192,6 @@ export class SpotifyService {
       }
       else {
         let trackFeatureArray:TrackFeature[]=[];
-        // 'danceability', 'energy', 'speechiness', 'acousticness',
-        //  'instrumentalness', 'liveness', 'valence'
         trackFeatureArray.push(new TrackFeature('danceability', response['danceability']));
         trackFeatureArray.push(new TrackFeature('energy', response['energy']));
         trackFeatureArray.push(new TrackFeature('speechiness', response['speechiness']));

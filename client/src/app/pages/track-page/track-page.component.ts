@@ -24,7 +24,7 @@ export class TrackPageComponent implements OnInit {
 
   ngOnInit() {
   	this.trackId = this.route.snapshot.paramMap.get('id');
-  	//TODO: Inject the spotifyService and use it to get the track data and it's audio features
+  	//Inject the spotifyService and use it to get the track data and it's audio features
     this.spotifyService.getTrack(this.trackId).then((data) => {
       this.track = data;
       this.albumArray = this.track.album;

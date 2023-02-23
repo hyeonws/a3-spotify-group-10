@@ -1,30 +1,30 @@
 <div class="row">
 	<div *ngIf="track" class="col-6">
-		<!--TODO: populate with track name-->
+		<!--populate with track name-->
 		<h1 class="heading">{{track.name}}</h1>
 		<p class="heading">
-			<!--TODO: link to album page, display album name-->
+			<!--link to album page, display album name-->
 			Track on <a href="{{albumArray.category}}/{{albumArray.id}}">{{albumArray.name}}</a>
 		</p>
 		<div>
-			<!--TODO: loop over track's artists-->
+			<!--loop over track's artists-->
 			<p *ngFor = "let artist of artistArray" class="heading">
 			
-				<!--TODO: link to artist page, display artist name-->
+				<!--link to artist page, display artist name-->
 				Artist: <a href = "{{artist.category}}/{{artist.id}}">{{artist.name}}</a>
 			</p>
 		</div>
 		<p class="heading">
-			<!--TODO: populate with track duration-->
+			<!--populate with track duration-->
 			Duration: {{track.durationStr}}
 		</p>
 		<p>
-			<!--TODO: link to track page on spotify, display track name-->
+			<!--link to track page on spotify, display track name-->
 			<a class="btn btn-light" role="button" target="_blank" [href] = "track.url">Open {{track.name}} on Spotify</a>
 		</p>
 	</div>
 	<div *ngIf="audioFeatures" class="col-6">
-		<!--TODO: loop over types of features and create a thermometer component for each-->
+		<!--loop over types of features and create a thermometer component for each-->
 		<app-thermometer *ngFor = "let audioF of audioFeatures" [featureName] = "audioF.name" [percent] = "audioF.percent"
 		 [featurePercentStr] = "audioF.percentageString" [featureColor] = "audioF.color"></app-thermometer>
 	</div>
