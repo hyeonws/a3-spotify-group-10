@@ -25,7 +25,6 @@ export class SearchComponent implements OnInit {
   search() {
     //TODO: call search function in spotifyService and parse response
 
-    // console.log("Search clicked!");
     if (this.searchString == undefined || this.searchString.trim() === '') {
       console.log("WARNING: searchString is undefined");
     } else {

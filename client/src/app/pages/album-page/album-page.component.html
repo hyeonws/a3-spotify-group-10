@@ -8,13 +8,13 @@
 		<span *ngFor="let artist of artistsArray">
 			<p class="heading">
 				<!--TODO: link to artist page, display artist name-->
-				Artist: <a [href] = "artist.url">{{artist.name}}</a>
-			</p>
-			<p>
-				<!--TODO: link to album page on spotify, display album name-->
-				<a class="btn btn-light" role="button" target="_blank" [href] = "artist.url" >Open {{artist.name}} on Spotify</a>
+				Artist: <a href = "{{artist.category}}/{{artist.id}}">{{artist.name}}</a>
 			</p>
 		</span>
+		<p>
+			<!--TODO: link to album page on spotify, display album name-->
+			<a class="btn btn-light" role="button" target="_blank" [href] = "album.url" >Open {{album.name}} on Spotify</a>
+		</p>
 	</div>
 	<div class="col-6">
 		<h3 class="heading">Album Tracks</h3>
