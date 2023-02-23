@@ -23,8 +23,7 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    //TODO: call search function in spotifyService and parse response
-
+    //Call search function in spotifyService and parse response
     if (this.searchString == undefined || this.searchString.trim() === '') {
       console.log("WARNING: searchString is undefined");
     } else {

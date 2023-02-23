@@ -14,6 +14,7 @@ export class CarouselCardComponent implements OnInit {
 
   constructor() { }
 
+  // On initialization, bind localURL to local page, imageURL to image for display, and name to name for display purposes
   ngOnInit() {
     this.localURL = this.resource.category + "/" + this.resource.id;
     this.imageURL = this.resource?.imageURL;
