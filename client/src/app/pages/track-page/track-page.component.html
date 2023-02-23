@@ -1,20 +1,20 @@
 <div class="row">
 	<div *ngIf="track" class="col-6">
 		<!--TODO: populate with track name-->
-		<h1>{{track.name}}</h1>
-		<p>
+		<h1 class="heading">{{track.name}}</h1>
+		<p class="heading">
 			<!--TODO: link to album page, display album name-->
 			Track on <a [href]="albumArray.url">{{albumArray.name}}</a>
 		</p>
 		<div>
 			<!--TODO: loop over track's artists-->
-			<p *ngFor = "let artist of artistArray">
+			<p *ngFor = "let artist of artistArray" class="heading">
 			
 				<!--TODO: link to artist page, display artist name-->
 				Artist: <a [href] = "artist.url">{{artist.name}}</a>
 			</p>
 		</div>
-		<p>
+		<p class="heading">
 			<!--TODO: populate with track duration-->
 			Duration: {{track.durationStr}}
 		</p>
